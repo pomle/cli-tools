@@ -1,0 +1,16 @@
+#! /usr/bin/env bash
+#
+# Given a base branch, a commit id, and a new branch name will
+# checkout base branch, cherry-pick commit id and push to
+# origin.
+#
+# Usage: git-export-pr master c0a014 user/my-new-pr
+#
+set -e
+BASE=$1
+COMMIT=$2
+AS_BRANCH=$3
+
+git checkout $BASE -b $AS_BRANCH
+git cherry-pick $COMMIT
+git push origin HEAD:$AS_BRANCH
